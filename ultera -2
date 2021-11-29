@@ -1,0 +1,90 @@
+Poojitha Thayaseelan, [11/29/2021 3:54 PM]
+lcd_port = (lcd_port & 0x0F) | (str[i] & 0xF0);
+  lcd_port |= (1<<rs);
+  lcd_port|= (1<<en);
+  _delay_us(1);
+  lcd_port &= ~ (1<<en);
+  _delay_us(200);
+  lcd_port = (lcd_port & 0x0F) | (str[i] << 4);
+  lcd_port |= (1<<en);
+  _delay_us(1);
+  lcd_port &= ~ (1<<en);
+  _delay_ms(2);
+ }
+}
+
+
+
+void lcd_setCursor(unsigned char x, unsigned char y){    // this function will be used to set cursor. the place where we want to display the data
+ unsigned char adr[] = {0x80, 0xC0};    // the 16x2 LCD has two rows first row has a value of 0x80. So let's say we want to go to the seconds column of first row
+             // we just need to send the command with adding 2 with the initial value. So, it will be (0x80 + 2) this is how the code works
+ lcd_command(adr[y-1] + x-1);
+ _delay_us(100);
+}
+
+int main()
+{
+ initialize();          
+
+ char numberString[4];   
+
+ while(1) {
+  
+  uint16_t r;
+  
+  _delay_ms(100);
+
+
+  
+  
+  HCSR04Init();
+
+
+  DDRC |= (1 << led1) | (1 << led2) | ( 1 << led3) | ( 1 << led4);    
+  DDRD |= (1 << led5);                                                
+  //PORTC |= 1 << led1;
+  while(1)
+  {
+   
+   //Send a trigger pulse
+   HCSR04Trigger();               // calling the ultrasonic sound wave generator function
+
+   //Measure the width of pulse
+   r=GetPulseWidth();             // getting the duration of the ultrasound took to echo back after hitting the object
+
+   //Handle Errors
+   if(r==US_ERROR)                // if microcontroller doesn't get any pulse then it will set the US_ERROR variable to -1
+                                  // the following code will check if there is error then it will be displayed on the LCD screen
+   {
+    lcd_setCursor(1, 1);      //lcd_setCursor(column, row)
+    lcd_print("Error!");
+   }
+   else
+   {
+ 
+    distance=(r*0.034/2.0); // This will give the distance in centimeters
+    
+    
+     if (distance != previous_distance)    // the LCD screen only need to be cleared if the distance is changed otherwise it is not required 
+     {
+      lcd_clear();
+     }
+     
+     lcd_setCursor(1, 1);      // set the row and column to display the data
+     lcd_print("Distance = ");
+     lcd_setCursor(12, 1);      //lcd_setCursor(column, row)
+     itoa(distance, numberString, 10);    // distance is an integer number, we can not display integer directly on the LCD. this line converts integer into array of character
+     lcd_print(numberString);
+     lcd_setCursor(14, 1);      //set the row to 1 and and column to 14 to display the data
+     lcd_print(" cm");
+     
+    
+    
+    
+    previous_distance = distance;
+    _delay_ms(30);
+   }
+  }
+  
+ }
+}
