@@ -3,6 +3,7 @@
  * Created: 11/29/2021 6:22:06 PM
  * Author : Thareejan
  */
+ //Without PWM
 #ifndef F_CPU
 #define F_CPU 8000000UL // 8 MHz clock speed
 #endif
