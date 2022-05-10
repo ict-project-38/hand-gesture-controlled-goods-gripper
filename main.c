@@ -144,4 +144,8 @@ void send_a_string(char *string_of_characters)
 
     }
 
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
