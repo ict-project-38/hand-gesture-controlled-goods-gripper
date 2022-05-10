@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <avr/io.h>
 
 //header to enable data flow control over pins
@@ -149,3 +150,6 @@ void send_a_string(char *string_of_characters)
 =======
 }
 >>>>>>> Stashed changes
+=======
+#include<avr/io.h>
+>>>>>>> 2cabe1afad8b2dc3edb1fa72bd2d8e4afa9d8ab2
