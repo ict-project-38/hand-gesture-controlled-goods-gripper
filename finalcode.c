@@ -7,7 +7,7 @@
 int int main() {
 	if (*positionLogic()==1)
 	{
-		
+
 	}
 	return 0;
 }
