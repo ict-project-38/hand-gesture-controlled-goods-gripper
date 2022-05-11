@@ -42,7 +42,7 @@ int flex()
             {
                 expandGripper();
             }
-            else if (volt < 1.6)
+            else if ((volt < 1.6) && (volt >0.3))
             {
                 shrinkGripper();
             }
