@@ -9,15 +9,16 @@ void loop()
 		ADCSRA |= (1 << ADSC);
 		while (ADCSRA & (1 << ADSC))
 		;
-		float tem, volt;
+		float tem, fsr;
 		tem = ADCH * 1.0;
-		volt = getVoltage(tem);
+		fsr = getVoltage(tem);
+		
 	
-			if (volt >= 5)
+			if (fsr >= 5)
 			{
 				
 			}
-			else if (volt < 5)
+			else if (fsr < 5)
 			{
 				
 			}
