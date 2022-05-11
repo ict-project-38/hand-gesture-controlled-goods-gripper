@@ -1,7 +1,7 @@
 #include <util/delay.h>
 
-char port[] = DDRB;
-char pin[] = PORTB;
+char port[] = "DDRB";
+char pin[] = "PORTB";
 
 void HorizontalStepRight() // Clockwise
 {
