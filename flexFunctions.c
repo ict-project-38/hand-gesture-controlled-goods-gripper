@@ -30,10 +30,7 @@ int flex()
             {
                 shrinkGripper();
             }
-            else if (volt <= 0.3)
-            {
-                stopGripper();
-            }
+           
 
             reg4 = 0X87;
             break;
@@ -46,10 +43,7 @@ int flex()
             {
                 shrinkGripper();
             }
-            else if (volt <= 0.3)
-            {
-                stopGripper();
-            }
+          
 
             reg4 = 0X40;
             break;
