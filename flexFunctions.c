@@ -28,7 +28,7 @@ int flex()
             }
             else if (volt < 1.6)
             {
-                strinkGripper();
+                shrinkGripper();
             }
 
             reg4 = 0X87;
@@ -40,7 +40,7 @@ int flex()
             }
             else if (volt < 1.6)
             {
-                strinkGripper();
+                shrinkGripper();
             }
 
             reg4 = 0X40;
