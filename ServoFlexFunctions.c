@@ -7,7 +7,7 @@ float getVoltage(float val)
 
 void rotateZero()
 {
-	_delay_ms(1500);
+	
 	pin = 175;	/* Set servo shaft at 0° position */
 	_delay_ms(1500);
 }
