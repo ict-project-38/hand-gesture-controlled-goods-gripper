@@ -10,7 +10,8 @@ int main()
 
         if((*positionLogic()==5)&& trigger==1)
         {
-            servoStop();
+            servo1Stop();
+            servo3Stop();
         }
         else if ((*positionLogic()==1)&& trigger==1 && (ultrasonic()>=10))
         {
@@ -35,7 +36,7 @@ int main()
            flex();
         }
 
-        else if ((trigger==1) && (fsr()>=5))
+        else if (fsr()>=5)
         {
             stopGripper();
         }
