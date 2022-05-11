@@ -2,20 +2,17 @@
 int pin;
 float getVoltage(float val)
 {
-	return (val * 4.82 / 255.0);
+	return (5);
 }
-
-void stopGripper()
+int pushGripper()
 {
-	_delay_ms(1500);
-	pin = 175;	/* Set servo shaft at 0° position */
-	_delay_ms(1500);
+	_/*delay_ms(1500);
+	pin = 175;	
+	_delay_ms(1500);*/
 }
-
-
-void pushGripper()
+int stopGripper()
 {
-	pin = 300;	/* Set servo at +90° position */
-	_delay_ms(1500);
+	/*pin = 300;	
+	_delay_ms(1500);*/
 }
 
