@@ -1,8 +1,9 @@
 #include <util/delay.h>
 
+char port[] = DDRB;
+char pin[] = PORTB
 
-
-void HorizontalStepRight(char port, char pin) // Clockwise
+void HorizontalStepRight() // Clockwise
 {
     int dtime=15;
     
@@ -30,7 +31,7 @@ void HorizontalStepRight(char port, char pin) // Clockwise
     
 }
 
-void HorizontalStepLeft(char port, char pin){	//AntiClocwise
+void HorizontalStepLeft(){	//AntiClocwise
     int dtime=15;
 	port = 0x0F;		/* Make pin lower pins as output */
 			/* Set dtime in between two steps */
@@ -55,7 +56,7 @@ void HorizontalStepLeft(char port, char pin){	//AntiClocwise
     
 }
 
-void VerticalStepUp(char port, char pin) // Clockwise
+void VerticalStepUp() // Clockwise
 {
     int dtime=15;
     
@@ -84,7 +85,7 @@ void VerticalStepUp(char port, char pin) // Clockwise
 }
 
 
-void VerticalStepDown(char port, char pin){	//AntiClocwise
+void VerticalStepDown(){	//AntiClocwise
     int dtime=15;
 	port = 0x0F;		/* Make pin lower pins as output */
 			/* Set dtime in between two steps */
@@ -109,7 +110,7 @@ void VerticalStepDown(char port, char pin){	//AntiClocwise
     
 }
 
-void StepStop(char port,char pin){
+void StepStop(){
 	port = 0x0F;		/* Make pin lower pins as output */
 
 	pin = 0x00;
