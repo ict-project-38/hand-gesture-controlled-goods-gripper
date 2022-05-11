@@ -62,7 +62,12 @@ void shrinkGripper()
     rotateMinusNinty();
 }
 
-void servoStop()
+void servo1Stop()
 {
-    rotateZero();
+   rotateZero();
+}
+
+void servo3Stop()
+{
+   rotateZero();
 }
