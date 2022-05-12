@@ -6,7 +6,7 @@
 
 
 
-int int main()
+int main()
 {
 	void loop()
 	{
