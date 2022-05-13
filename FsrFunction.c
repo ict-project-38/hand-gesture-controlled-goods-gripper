@@ -4,7 +4,7 @@
 #include <util/delay.h>
 #include "servoFunctions.c"
 #include "Gripper.c"
-int pin;
+
 float getVoltage(float val)
 {
 	return (5);
