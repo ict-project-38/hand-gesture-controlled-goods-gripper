@@ -10,7 +10,7 @@
 //#include "ServoFlexFunctions.c"
 #include "StepperFunctions.c"
 //#include "TriggerFunction.c"
-//#include "UltrasonicFunction.c"
+#include "UltrasonicFunction.c"
 //#include "GripperFunction.c"
 //#include "BluetoothFunctions.c"
 
