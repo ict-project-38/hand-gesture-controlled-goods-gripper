@@ -1,18 +1,23 @@
 #include <util/delay.h>
+#include <avr/io.h>
+#include <stdio.h>
+#include <util/delay.h>
+#include "servoFunctions.c"
+#include "Gripper.c"
 int pin;
 float getVoltage(float val)
 {
 	return (5);
 }
-int pushGripper()
+int fsr()
 {
-	_/*delay_ms(1500);
-	pin = 175;	
-	_delay_ms(1500);*/
-}
-int stopGripper()
-{
-	/*pin = 300;	
-	_delay_ms(1500);*/
+	if (fsr >= 5)
+			{
+			stopgripper();	
+			}
+       else if (fsr < 5)
+			{
+			shrinkgripper();
+			}
 }
 
