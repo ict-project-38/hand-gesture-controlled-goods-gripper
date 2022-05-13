@@ -1,4 +1,4 @@
-#define F_CPU 8000000UL		/* Define CPU Frequency e.g. here its 8MHz */
+#define F_CPU 1000000UL		/* Define CPU Frequency e.g. here its 8MHz */
 #include <avr/io.h>		/* Include AVR std. library file */
 #include <stdio.h>		/* Include std. library file */
 #include <util/delay.h>		/* Include Delay header file */
@@ -17,5 +17,5 @@ void setup()
 	/* Set Fast PWM, TOP in ICR1, Clear OC1A on compare match, clk/64 */
 	TCCR1A = (1<<WGM11)|(1<<COM1A1);
 	TCCR1B = (1<<WGM12)|(1<<WGM13)|(1<<CS10)|(1<<CS11);	
-	
+
 }
