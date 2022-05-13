@@ -11,7 +11,6 @@ int TimerOverflow=0;
     TimerOverflow++; 
  } 
 	 
-
 double ultrasonic()
 {long count; 	
  double distance; 	
@@ -41,7 +40,4 @@ TIFR=1<<TOV1;
 	return distance;
 	
      }
-       int main(){
-
-	double x= ultrasonic();
-     }
+       
