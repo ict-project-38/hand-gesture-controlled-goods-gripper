@@ -3,13 +3,13 @@
 #include <stdio.h>
 #include <util/delay.h>
 #include "servoFunctions.c"
-#include "Gripper.c"
+
 
 float getVoltage(float val)
 {
 	return (5);
 }
-int fsr()
+float fsr()
 {
 	if (fsr >= 5)
 			{
