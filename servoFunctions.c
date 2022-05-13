@@ -2,19 +2,11 @@
 #include <avr/io.h>		/* Include AVR std. library file */
 #include <stdio.h>		/* Include std. library file */
 #include <util/delay.h>		/* Include Delay header file */
+#include "FlexServoIntegration.c"
 
 
 
 
-int servoSetup()
-{
-	
-	TCNT1 = 0;		
-	ICR1 = 19999;	
-	DDRD |= (1<<PD5);
-	TCCR1A = (1<<WGM11)|(1<<COM1A1);
-	TCCR1B = (1<<WGM12)|(1<<WGM13)|(1<<CS10)|(1<<CS11);	
-}
 
 
 unsigned int duty;	
