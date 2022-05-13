@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <util/delay.h>
 #include "servoFunctions.c"
+#include "FlexServoIntegration.c"
 
 float getVoltage(float val)
 {
@@ -11,12 +12,6 @@ float getVoltage(float val)
 
 int flex()
 {
-
-    reg1 |= (1 << reg2);
-    while (reg1 & (1 << reg2));
-    float tem, volt;
-    tem = reg3 * 1.0;
-    volt = getVoltage(tem);
 
     switch (reg4)
     {
