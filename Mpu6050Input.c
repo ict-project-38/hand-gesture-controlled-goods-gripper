@@ -53,7 +53,6 @@ void Read_RawValue()
 	Acc_x = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Acc_y = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Acc_z = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
-	Temperature = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Gyro_x = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Gyro_y = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Gyro_z = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Nack());
