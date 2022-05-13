@@ -1,7 +1,4 @@
-#define F_CPU 1000000UL		/* Define CPU Frequency e.g. here its 8MHz */
-#include <avr/io.h>		/* Include AVR std. library file */
-#include <stdio.h>		/* Include std. library file */
-#include <util/delay.h>		/* Include Delay header file */
+
 #include "FlexServoIntegration.c"
 
 
