@@ -1,73 +1,77 @@
-#define F_CPU 8000000UL		/* Define CPU Frequency e.g. here its 8MHz */
+#define F_CPU 1000000UL		/* Define CPU Frequency e.g. here its 8MHz */
 #include <avr/io.h>		/* Include AVR std. library file */
 #include <stdio.h>		/* Include std. library file */
 #include <util/delay.h>		/* Include Delay header file */
 
 
-int pin;
-void rotateZero()
+
+
+
+
+
+unsigned int duty;	
+
+void rotateRight()
 {
-    pin = 175;	/* Set servo shaft at 0° position */
-    _delay_ms(1500);
+   	for(duty=14; duty<32; duty++)  
+		{
+			OCR1A=duty;
+			_delay_ms(1000);
+		}
 }
 
-
-void rotateNinty()
+void rotateLeft()
 {
-    pin = 300;	/* Set servo at +90° position */
-    _delay_ms(1500);
-}
-
-void rotateMinusNinty()
-{
-    pin = 65;	/* Set servo shaft at -90° position */
-    _delay_ms(1500);
+   for(duty=31; duty>=14; duty--)  
+		{
+			OCR1A=duty;   
+			_delay_ms(1000);
+		}
 }
 
 void stopGripper()
 {
-    _delay_ms(15000000000);
-    pin = 175;	/* Set servo shaft at 0° position */
+    gripperPin=0x00;
 }
 
 
 
 void servo1left()
 {
-    rotateMinusNinty();
+    rotateLeft();
 }
 
 void servo1Right()
 {
-    rotateNinty();
+    rotateRight();
 }
 
 void servo3Up()
 {
-    rotateNinty();
+    rotateRight();
 }
 
 void servo3Down()
 {
-    rotateMinusNinty();
+    rotateLeft();
 }
 
 void expandGripper()
 {
-    rotateNinty();
+    rotateRight();
 }
 
 void shrinkGripper()
 {
-    rotateMinusNinty();
+    rotateLeft();
 }
 
 void servo1Stop()
 {
-   rotateZero();
+  servo1Pin=0x00;
 }
 
 void servo3Stop()
 {
-   rotateZero();
+   servo3Pin=0x00;
 }
