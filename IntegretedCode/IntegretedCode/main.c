@@ -7,18 +7,19 @@
 
 #include <avr/io.h>
 #include "Mpu6050Input.c"
-#include "ServoFlexFunctions.c"
+//#include "ServoFlexFunctions.c"
 #include "StepperFunctions.c"
-#include "TriggerFunction.c"
-#include "UltrasonicFunction.c"
-#include "GripperFunction.c"
-#include "BluetoothFunctions.c"
+//#include "TriggerFunction.c"
+//#include "UltrasonicFunction.c"
+//#include "GripperFunction.c"
+//#include "BluetoothFunctions.c"
 
 
 //Function Declarations
 void Mpu6050Stepper();
 void Mpu6050Servo();
 void gripper();
+int trigger=1;
 
 int main()
 {
