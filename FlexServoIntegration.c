@@ -11,10 +11,8 @@
 void setup()
 {
 	 ADCSRA |= (1 << ADSC);
-    while (ADCSRA & (1 << ADSC));
-    float tem, volt;
-    tem = ADCH * 1.0;
-    volt = getVoltage(tem);
+   
+    
 
 	TCNT1 = 0;		/* Set timer1 count zero */
 	ICR1 = 2499;		/* Set TOP count for timer1 in ICR1 register */
