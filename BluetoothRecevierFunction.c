@@ -10,7 +10,6 @@
 void USART_Init(unsigned long BAUDRATE);
 char USART_RxChar();
 void USART_TxChar(char data);
-void USART_SendString(char*str);
 
 
 void USART_Init(unsigned long BAUDRATE)
@@ -33,15 +32,6 @@ void USART_TxChar(char data)
 	while (!(UCSRA & (1<<UDRE)));
 }
 
-void USART_SendString(char*str)
-{
-	int i=0;
-	while (str[i]!=0)
-	{
-		USART_TxChar(str[i]);
-		i++;
-	}
-}
 
 int main(void)
 {
