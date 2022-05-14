@@ -10,10 +10,10 @@
 
 void setup()
 {
-	 reg1 |= (1 << reg2);
-    while (reg1 & (1 << reg2));
+	 ADCSRA |= (1 << ADSC);
+    while (ADCSRA & (1 << ADSC));
     float tem, volt;
-    tem = reg3 * 1.0;
+    tem = ADCH * 1.0;
     volt = getVoltage(tem);
 
 	TCNT1 = 0;		/* Set timer1 count zero */
