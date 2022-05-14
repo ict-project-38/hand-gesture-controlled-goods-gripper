@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <util/delay.h>
-
-
 int main()
 {
 	unsigned int i;
