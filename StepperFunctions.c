@@ -55,20 +55,20 @@ void VerticalStepUp() // Clockwise
 {
     int dtime=15;
     
-	DDRB = 0x0F;		/* Make PORTB lower PORTBs as output */
+	DDRB = 0xF0;		/* Make PORTB lower PORTBs as output */
                         /* Set dtime in between two steps */
 	while (1)
 	{
 		
 		for(int i=0;i<12;i++)
 		{
-			PORTB = 0x09;
+			PORTB = 0x90;
 			_delay_ms(dtime);
-			PORTB = 0x0C;
+			PORTB = 0xC0;
 			_delay_ms(dtime);
-			PORTB = 0x06;
+			PORTB = 0x60;
 			_delay_ms(dtime);
-			PORTB = 0x03;
+			PORTB = 0x30;
 			_delay_ms(dtime);
 		}
 		//PORTB = 0x09;		/* Last step to initial position */ 
@@ -82,20 +82,20 @@ void VerticalStepUp() // Clockwise
 
 void VerticalStepDown(){	//AntiClocwise
     int dtime=15;
-	DDRB = 0x0F;		/* Make PORTB lower PORTBs as output */
+	DDRB = 0xF0;		/* Make PORTB lower PORTBs as output */
 			/* Set dtime in between two steps */
 	while (1)
 	{
         /* Rotate Stepper Motor Anticlockwise with Full step sequence */
 		for(int i=0;i<12;i++)
 		{
-			PORTB = 0x09;
+			PORTB = 0x90;
 			_delay_ms(dtime);
-			PORTB = 0x03;
+			PORTB = 0x30;
 			_delay_ms(dtime);
-			PORTB = 0x06;
+			PORTB = 0x60;
 			_delay_ms(dtime);
-			PORTB = 0x0C;
+			PORTB = 0xC0;
 			_delay_ms(dtime);
 		}
 		//PORTB = 0x09;
@@ -106,6 +106,6 @@ void VerticalStepDown(){	//AntiClocwise
 }
 
 void StepStop(){
-	DDRB = 0x0F;		/* Make PORTB lower PORTBs as output */
+	DDRB = 0xFF;		/* Make PORTB lower PORTBs as output */
 	PORTB = 0x00;
 }
