@@ -9,7 +9,7 @@
 #include "USART_RS232_H_file.h"							/* Include USART header file */
 
 float Acc_x,Acc_y,Acc_z,Gyro_x,Gyro_y,Gyro_z;
-int arr[3];
+char arr[3];
 
 void MPU6050_Init()										/* Gyro initialization function */
 {
@@ -61,10 +61,10 @@ void Read_RawValue()
 }
 
 
-int*  positionLogic()
+char*  positionLogic()
 {
-	int right=1,left=2,up=3,down=4,stable=5;
-	int position = right ,position2=up;
+	char right=1,left=2,up=3,down=4,stable=5;
+	char position = right ,position2=up;
 	float Xa,Ya,Za;
 	float Xg=0,Yg=0,Zg=0;
 	I2C_Init();											/* Initialize I2C */
