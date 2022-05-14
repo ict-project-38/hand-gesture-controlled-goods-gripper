@@ -6,24 +6,27 @@
 
 
 
-unsigned int duty;	
+unsigned int i;	
 
 void rotateRight()
 {
-   	for(duty=14; duty<32; duty++)  
-		{
-			OCR1A=duty;
-			_delay_ms(1000);
-		}
+   for(i=125;i<=250;i++)
+	{	
+	_delay_ms(1000);
+	OCR1B = i;
+	OCR1A = i;
+	}
 }
 
 void rotateLeft()
 {
-   for(duty=31; duty>=14; duty--)  
-		{
-			OCR1A=duty;   
-			_delay_ms(1000);
-		}
+   for(i=250;i>=125;i--)
+	{
+		_delay_ms(1000);
+		OCR1B = i;
+		OCR1A = i;
+	
+	}
 }
 
 void stopGripper()
