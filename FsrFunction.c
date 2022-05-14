@@ -5,7 +5,8 @@
 #include "servoFunctions.c"
 
 
-float getVoltage(float val)
+float getFsrVoltage(float val);
+fsr=getFsrVoltage();
 {
 	return (5);
 }
