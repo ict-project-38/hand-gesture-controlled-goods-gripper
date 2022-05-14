@@ -10,34 +10,41 @@ float getVoltage(float val)
 int flex()
 {
 
-    switch (reg4)
+    switch (ADMUX)
     {
+         ADCSRA |= (1 << ADSC);
+
+        while (ADCSRA & (1 << ADSC));
+
+         tem = ADCH * 1.0;
+        volt = getVoltage(tem);
+        
         case 0X40:
             if (volt >= 1.6)
             {
                 expandGripper();
 
             }
-            else if ((volt < 1.6)&& (volt >0.3))
+            else if (volt < 1.6)
             {
                 shrinkGripper();
             }
            
 
-            reg4 = 0X87;
+            ADMUX = 0X87;
             break;
         case 0X87:
             if (volt >= 1.6)
             {
                 expandGripper();
             }
-            else if ((volt < 1.6) && (volt >0.3))
+            else if (volt < 1.6)
             {
                 shrinkGripper();
             }
           
 
-            reg4 = 0X40;
+            ADMUX = 0X40;
             break;
     }
     _delay_ms(500);
