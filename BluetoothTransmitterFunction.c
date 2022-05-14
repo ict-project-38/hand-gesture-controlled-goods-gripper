@@ -1,11 +1,14 @@
-#include "Mpu6050Input.c"
-#include "TriggerFunction.c"
 #define F_CPU 8000000UL
 #include <avr/io.h>
 #include "USART_RS232_H_file.h"
 #include <stdio.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+//Include Essential Functions related to the Modules
+#include "Mpu6050Input.c"
+#include "TriggerFunction.c"
+#include "FlexFunctions.c"
+
 
 void USART_Init(unsigned long BAUDRATE);
 char USART_RxChar();
@@ -51,7 +54,7 @@ int main(void)
 		out_arr[3] = *getVoltage();
 		out_arr[4] = *(getVoltage()+1);
 		out_arr[5] = triggerSwitchVal();
-		USART_SendSensorValue(out_arr[])
+		USART_SendSensorValue(out_arr[]);
 		return 0;
 	}
 }

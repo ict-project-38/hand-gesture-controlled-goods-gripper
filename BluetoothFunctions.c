@@ -11,7 +11,6 @@ void USART_TxChar(char data);
 int out_arr[6];
 
 
-
 void USART_Init(unsigned long BAUDRATE)
 {
 	UCSRB |= (1 << RXEN) | (1 << TXEN);

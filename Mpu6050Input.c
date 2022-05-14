@@ -113,8 +113,8 @@ char*  positionLogic()
 		_delay_ms(200);
 
 	}
-	arr[1]=position;
-	arr[2]=position2;
-	arr[3]=stable;
+	arr[0]=position;
+	arr[1]=position2;
+	arr[2]=stable;
 	return arr;
 }

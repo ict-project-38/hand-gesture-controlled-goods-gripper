@@ -13,7 +13,7 @@ int TimerOverflow=0;
  } 
 	 
 
-double ultrasonic()
+double ultrasonicValue()
 {
 			long count; 	
 			double distance; 	
