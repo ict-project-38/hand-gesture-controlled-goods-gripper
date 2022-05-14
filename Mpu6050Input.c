@@ -9,7 +9,7 @@
 #include "USART_RS232_H_file.h"							/* Include USART header file */
 
 float Acc_x,Acc_y,Acc_z,Gyro_x,Gyro_y,Gyro_z;
-int arr[2];
+int arr[3];
 
 void MPU6050_Init()										/* Gyro initialization function */
 {
@@ -53,6 +53,7 @@ void Read_RawValue()
 	Acc_x = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Acc_y = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Acc_z = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
+	Temperature = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Gyro_x = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Gyro_y = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Gyro_z = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Nack());
@@ -62,9 +63,9 @@ void Read_RawValue()
 
 int*  positionLogic()
 {
-	int right=1,left=2,up=3,down=4;
+	int right=1,left=2,up=3,down=4,stable=5;
 	int position = right ,position2=up;
-	float Xa,Ya,Za,t;
+	float Xa,Ya,Za;
 	float Xg=0,Yg=0,Zg=0;
 	I2C_Init();											/* Initialize I2C */
 	MPU6050_Init();										/* Initialize MPU6050 */
@@ -83,28 +84,28 @@ int*  positionLogic()
 		Zg = Gyro_z/16.4;
 		if (position==right)
 		{
-			if(Xa>0)
+			if(Xa>stable)
 				position=left;
 			else
 				position=right;
 		}
 		else if(position==left)
 		{
-			if(Xa<0)
+			if(Xa<stable)
 				position=right
 			else
 				position=left;
 		}
 		if (position2==down)
 		{
-			if(Ya>0)
+			if(Ya>stable)
 				position2=up;
 			else
 				position2=down;
 		}
 		else if (position2==up)
 		{
-			if(Ya<0)
+			if(Ya<stable)
 				position2=down;
 			else
 				position2=up;
@@ -114,5 +115,6 @@ int*  positionLogic()
 	}
 	arr[1]=position;
 	arr[2]=position2;
+	arr[3]=stable;
 	return arr;
 }
