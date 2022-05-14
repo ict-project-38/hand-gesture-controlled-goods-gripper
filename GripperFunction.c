@@ -43,7 +43,7 @@ float getFsrVoltage(int data)
 
 	return (val);
 }
-int fsr()
+float fsrvalue()
 {
 		if (val>= 5)
 		{
