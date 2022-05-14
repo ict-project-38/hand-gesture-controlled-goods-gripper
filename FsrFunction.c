@@ -12,6 +12,9 @@ fsr=getFsrVoltage();
 }
 float fsr()
 {
+	 ADCSRA |= (1 << ADSC);
+
+        while (ADCSRA & (1 << ADSC));
 	if (fsr >= 5)
 			{
 			stopgripper();	
