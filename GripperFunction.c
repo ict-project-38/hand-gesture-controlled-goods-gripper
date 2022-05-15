@@ -10,7 +10,7 @@ float val;
 void setup()
 {
 	
-	unsigned int a,i;
+	unsigned int data=a,;
 	DDRC=0XFF;
 	DDRD=0XFF;
 	DDRA=0;
@@ -29,17 +29,6 @@ void setup()
 
 float getFsrVoltage(int data)
 {
-	
-	PORTA=data;
-
-	PORTD|=1;
-
-	PORTD&=~1;
-
-	PORTD|=1<<1;
-	_delay_ms(10);
-	PORTD&=~(1<<1);
-	_delay_ms(10);
 
 	return (val);
 }
@@ -47,12 +36,12 @@ float fsrvalue()
 {
 		if (val>= 5)
 		{
-			stopGripper();
+			Gripperstop();
 
 		}
 		else if (val < 5)
 		{
-			shrinkGripper();
+			Gripper();
 		}
 		
 	
