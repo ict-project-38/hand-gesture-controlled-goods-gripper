@@ -1,7 +1,7 @@
 #include <util/delay.h>
 void HorizontalStepRight() // Clockwise
 {
-    int dtime=15;
+    int dtime=80;
 	DDRB = 0x0F;		/* Make PORTB lower PORTBs as output */
                         /* Set dtime in between two steps */
 	while (1)
@@ -27,7 +27,7 @@ void HorizontalStepRight() // Clockwise
 }
 
 void HorizontalStepLeft(){	//AntiClocwise
-    int dtime=15;
+    int dtime=80;
 	DDRB = 0x0F;		/* Make PORTB lower PORTBs as output */
 			/* Set dtime in between two steps */
 	while (1)
@@ -53,7 +53,7 @@ void HorizontalStepLeft(){	//AntiClocwise
 
 void VerticalStepUp() // Clockwise
 {
-    int dtime=15;
+    int dtime=80;
     
 	DDRB = 0xF0;		/* Make PORTB lower PORTBs as output */
                         /* Set dtime in between two steps */
@@ -81,7 +81,7 @@ void VerticalStepUp() // Clockwise
 
 
 void VerticalStepDown(){	//AntiClocwise
-    int dtime=15;
+    int dtime=80;
 	DDRB = 0xF0;		/* Make PORTB lower PORTBs as output */
 			/* Set dtime in between two steps */
 	while (1)
