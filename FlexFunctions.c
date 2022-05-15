@@ -4,7 +4,7 @@
 
 
 float val[2];
-float tem, voltage;
+float  voltage[2];
 float volt[2];
 unsigned int a;
 float getVoltage(float val[])
@@ -28,33 +28,47 @@ float getVoltage(float val[])
 
 }
 
+
+
+
+
+
+
+
+
+//function for integration of flex and gripper
+
+
+
+
+
 void gripper()
 {
 
-    tem = ADCH * 1.0;
-    voltage = getVoltage(tem);
+   // tem = ADCH * 1.0;
+    voltage[] = getVoltage();
     switch (ADMUX)
     {
         case 0b01100000:
 
-            if (voltage >= 1)
+            if (voltage[0] >= 1)
             {
-              
+              expandGripper;
             }
-            else if (voltage < 1.6)
+            else if (voltage[0] < 1)
             {
-              
+              shrinkGripper;
             }
             ADMUX = 0b01100001;
             break;
         case 0b01100001:
-            if (voltage >= 1)
+            if (voltage[1] >= 1)
             {
-               
+               expandGripper;
             }
-            else if (voltage < 1.5)
+            else if (voltage[1] < 1)
             {
-               
+               shrinkGripper;
             }
             ADMUX = 0b01100000;
             break;
