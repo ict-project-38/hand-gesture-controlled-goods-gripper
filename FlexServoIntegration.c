@@ -10,10 +10,10 @@
 
 void setup()
 {
+	 DDRA=0xFF;
+  ADCSRA=0b10000001;
+ ADMUX=0b01000000;
 	 ADCSRA |= (1 << ADSC);
-   
-    
-
 	TCNT1 = 0;		/* Set timer1 count zero */
 	ICR1 = 2499;		/* Set TOP count for timer1 in ICR1 register */
 
