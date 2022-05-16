@@ -13,7 +13,9 @@ float getVoltage(float val[])
     ADMUX=0b01000000;
     while((ADCSRA & (0x10))==0);//wait for conversion
     a=ADCL|ADCH<<8;
-    volt[0]=((val[0]) * 5 / 1024);
+    volt[0]=((val[0]) * 5 / 1023);
+     _delay_ms(10);
+
 
  //    //conversion saved in 10 bits
 
@@ -22,7 +24,8 @@ float getVoltage(float val[])
     ADMUX=0b01000001;
     while ((ADCSRA & (0x10))==0);
      a=ADCL|ADCH<<8;
-    volt[1]=(val[1] * 5 / 1024);
+    volt[1]=(val[1] * 5 / 1023);
+     _delay_ms(10);
     return volt[];
 
 
