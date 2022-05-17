@@ -3,17 +3,14 @@
 #include "FlexServoIntegration.c"
 
 
-float val[2];
 float  voltage[2];
-float volt[2];
-unsigned int a;
-float getVoltage(float val[])
+unsigned int a[];
+float getVoltage()                 
 {
     ADCSRA=0b11000001; //start conversion
-    ADMUX=0b01000000;
+    ADMUX=0b01000000;  //set input channel to read
     while((ADCSRA & (0x10))==0);//wait for conversion
-    a=ADCL|ADCH<<8;
-    volt[0]=((val[0]) * 5 / 1023);
+    a[0]=ADCL|ADCH<<8;                                                                                      //   Dout = Vin / step size.
      _delay_ms(10);
 
 
@@ -21,12 +18,11 @@ float getVoltage(float val[])
 
 
     ADCSRA=0b11000001;
-    ADMUX=0b01000001;
+    ADMUX=0b01000001;   /
     while ((ADCSRA & (0x10))==0);
-     a=ADCL|ADCH<<8;
-    volt[1]=(val[1] * 5 / 1023);
+     a[1]=ADCL|ADCH<<8;
      _delay_ms(10);
-    return volt[];
+    return a[];
 
 
 }
@@ -45,7 +41,7 @@ float getVoltage(float val[])
 
 
 
-void gripper()
+void gripper(int a[])
 {
 
    // tem = ADCH * 1.0;
@@ -54,22 +50,22 @@ void gripper()
     {
         case 0b01100000:
 
-            if (voltage[0] >= 1)
+            if (voltage[0] >=204.6 )          //   1/(5/1023)
             {
               expandGripper;
             }
-            else if (voltage[0] < 1)
+            else if (voltage[0] <204.6 )
             {
               shrinkGripper;
             }
             ADMUX = 0b01100001;
             break;
         case 0b01100001:
-            if (voltage[1] >= 1)
+            if (voltage[1] >=204.6)
             {
                expandGripper;
             }
-            else if (voltage[1] < 1)
+            else if (voltage[1] <204.6)
             {
                shrinkGripper;
             }
