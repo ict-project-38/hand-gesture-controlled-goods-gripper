@@ -3,7 +3,7 @@
 #include "FlexServoIntegration.c"
 
 
-float  voltage[2];
+int  voltage[2];
 unsigned int a[];
 float getVoltage()                 
 {
@@ -44,33 +44,18 @@ float getVoltage()
 void gripper(int a[])
 {
 
-   // tem = ADCH * 1.0;
+   
     voltage[] = getVoltage();
-    switch (ADMUX)
-    {
-        case 0b01100000:
+    int finalVoltage;
+    finalVoltage=(voltage[0]+voltage[1])/2;
 
-            if (voltage[0] >=204.6 )          //   1/(5/1023)
-            {
-              expandGripper;
-            }
-            else if (voltage[0] <204.6 )
-            {
-              shrinkGripper;
-            }
-            ADMUX = 0b01100001;
-            break;
-        case 0b01100001:
-            if (voltage[1] >=204.6)
-            {
-               expandGripper;
-            }
-            else if (voltage[1] <204.6)
-            {
-               shrinkGripper;
-            }
-            ADMUX = 0b01100000;
-            break;
-    }
+    if (finalVoltage>=342)
+    {
+      shrinkGripper;
+    }  
+    else
+    {
+      expandGripper;
+    }                                                            //30 degree--50k----1.67V
     _delay_ms(500);
 }
