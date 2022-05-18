@@ -13,7 +13,7 @@ float* getVoltage()
 
 
     ADCSRA=0b11000001;
-    ADMUX=0b01000001;   /
+    ADMUX=0b01000001;
     while ((ADCSRA & (0x10))==0);
      a[1]=ADCL|ADCH<<8;
      _delay_ms(10);

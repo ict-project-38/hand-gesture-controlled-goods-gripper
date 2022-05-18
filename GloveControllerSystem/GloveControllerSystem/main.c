@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+
 //Include Essential Functions related to the Modules
 #include "Mpu6050Input.c"
 #include "TriggerFunction.c"
@@ -18,7 +19,7 @@
 //Declarations of Functions and Global Variables
 void USART_Init(unsigned long BAUDRATE);
 void USART_TxChar(char data);
-void USART_SendSensorValue(char *SensorValues)
+void USART_SendSensorValue(char *SensorValues);
 char out_arr[6];
 
 void USART_Init(unsigned long BAUDRATE)
@@ -58,7 +59,7 @@ int main(void)
 		out_arr[3] = *getVoltage();
 		out_arr[4] = *(getVoltage()+1);
 		out_arr[5] = triggerSwitchVal();
-		USART_SendSensorValue(out_arr[]);
+		USART_SendSensorValue(out_arr);
 		return 0;
 	}
 }
