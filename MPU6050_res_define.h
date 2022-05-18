@@ -1,8 +1,8 @@
 /*
  * MPU6050_res_define.h
  *
- * Created: 04/21/2016 22:47:10
- *  Author: Suraj
+ * Created: 04/21/2022 22:47:10
+ *  Author: Thareejan
  */ 
 
 
