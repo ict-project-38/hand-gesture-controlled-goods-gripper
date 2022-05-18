@@ -20,7 +20,7 @@ main.d main.o: .././main.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  .././Mpu6050Input.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
- .././MPU6050_res_define.h .././I2C_Master_H_file.h \
+ .././MPU6050_res_define.h .././I2C_Master_H_file.c \
  .././TriggerFunction.c .././FlexFunctions.c
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
@@ -67,7 +67,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 .././MPU6050_res_define.h:
 
-.././I2C_Master_H_file.h:
+.././I2C_Master_H_file.c:
 
 .././TriggerFunction.c:
 

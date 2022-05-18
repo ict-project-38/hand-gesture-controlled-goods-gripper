@@ -5,7 +5,7 @@
 #include <stdlib.h>										/* Include standard library file */
 #include <stdio.h>										/* Include standard library file */
 #include "MPU6050_res_define.h"							/* Include MPU6050 register define file */
-#include "I2C_Master_H_file.h"							/* Include I2C Master header file */
+#include "I2C_Master_H_file.c"							/* Include I2C Master header file */
 #include "USART_RS232_H_file.h"							/* Include USART header file */
 
 float Acc_x,Acc_y,Acc_z,Gyro_x,Gyro_y,Gyro_z;
