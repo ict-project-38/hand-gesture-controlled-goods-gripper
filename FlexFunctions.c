@@ -1,11 +1,6 @@
-
-#include "servoFunctions.c"
-#include "FlexServoIntegration.c"
-
-
 int  voltage[2];
 unsigned int a[];
-float getVoltage()                 
+float* getVoltage()                 
 {
     ADCSRA=0b11000001; //start conversion
     ADMUX=0b01000000;  //set input channel to read
@@ -40,7 +35,7 @@ float getVoltage()
 
 
 
-
+/*
 void gripper(int a[])
 {
 
@@ -59,3 +54,4 @@ void gripper(int a[])
     }                                                            //30 degree--50k----1.67V
     _delay_ms(500);
 }
+*/
