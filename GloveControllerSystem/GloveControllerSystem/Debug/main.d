@@ -21,7 +21,8 @@ main.d main.o: .././main.c \
  .././Mpu6050Input.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  .././MPU6050_res_define.h .././I2C_Master_H_file.h \
- .././TriggerFunction.c .././FlexFunctions.c
+ .././USART_RS232_H_file_MPU.h .././TriggerFunction.c \
+ .././FlexFunctions.c
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -68,6 +69,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././MPU6050_res_define.h:
 
 .././I2C_Master_H_file.h:
+
+.././USART_RS232_H_file_MPU.h:
 
 .././TriggerFunction.c:
 
