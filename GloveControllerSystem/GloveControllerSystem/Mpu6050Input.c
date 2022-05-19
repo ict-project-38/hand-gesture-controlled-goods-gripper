@@ -5,8 +5,8 @@
 #include <stdlib.h>										/* Include standard library file */
 #include <stdio.h>										/* Include standard library file */
 #include "MPU6050_res_define.h"							/* Include MPU6050 register define file */
-#include "I2C_Master_H_file.c"							/* Include I2C Master header file */
-#include "USART_RS232_H_file.h"							/* Include USART header file */
+#include "I2C_Master_H_file.h"							/* Include I2C Master header file */
+#include "USART_RS232_H_file_MPU.h"							/* Include USART header file */
 
 float Acc_x,Acc_y,Acc_z,Gyro_x,Gyro_y,Gyro_z;
 char arr[3];
@@ -60,7 +60,7 @@ void Read_RawValue()
 }
 
 
-char*  positionLogic()
+char*  positionLogic() 
 {
 	char right=1,left=2,up=3,down=4,stable=5;
 	char position = right ,position2=up;
