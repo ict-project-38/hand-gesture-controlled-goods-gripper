@@ -4,30 +4,12 @@
  * Created: 5/13/2022 6:11:43 PM
  * Author : Thareejan
  */ 
-#define F_CPU 8000000UL		/* define Clock Frequency */
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <util/delay.h>
-
-#include "ServoFunctions.c"
-#include "StepperFunctions.c"
-#include "UltrasonicFunction.c"
-#include "BluetoothRecevierFunction.c"
-#include "FsrFunction.c"
-
 
 void Mpu6050Stepper();
 void Mpu6050Servo();
 void gripper();
 
 
-int main()
-{
-	pwmsetup();
 	void loop()
 	{
 		if (ultrasonicValue()>10)
@@ -104,9 +86,7 @@ void Mpu6050Servo()
 
 void gripper()
 {
-	char voltage[2];
-	voltage[0] = *(getSensorValues()+3);
-	voltage[1] = *(getSensorValues()+4);
+
 	int finalVoltage;
 	finalVoltage=(voltage[0]+voltage[1])/2;
 	if (finalVoltage>=342)
