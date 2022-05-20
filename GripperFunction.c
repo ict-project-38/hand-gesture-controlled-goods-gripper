@@ -4,16 +4,10 @@
 #include <util/delay.h>
 #include <ServoFunction.c>
 
-float getFsrVoltage(int data);
-float val;
-
-void setup()
+float fsrValue()
+float voltage;
 {
 	
-	unsigned int data=a,;
-	DDRC=0XFF;
-	DDRD=0XFF;
-	DDRA=0;
 	ADCSRA=0X87;
 	ADMUX=0X40;
 	
@@ -25,15 +19,9 @@ void setup()
 		a=ADCH;
 		a=ADCL|ADCH<<8;
 	}
-}
-
-float getFsrVoltage(int data)
-{
-
 	return (val);
 }
-float fsrvalue()
-{
+ /*{
 		if (val>= 5)
 		{
 			Gripperstop();
@@ -47,3 +35,4 @@ float fsrvalue()
 	
 	_delay_ms(500);
 }
+*/
