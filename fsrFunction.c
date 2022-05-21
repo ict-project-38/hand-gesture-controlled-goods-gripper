@@ -2,10 +2,10 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-float fsrValue()
+int fsrValue()
 
 {
-	float val;
+	int val;
 	ADCSRA=0X87;
 	ADMUX=0X40;
 	
