@@ -1,8 +1,6 @@
 
-
 #include <avr/io.h>
 #include <util/delay.h>
-#include <ServoFunction.c>
 
 float fsrValue()
 
@@ -19,20 +17,6 @@ float fsrValue()
 		val=ADCH;
 		val=ADCL|ADCH<<8;
 	}
-	return (val);
+	return val;
 }
- /*{
-		if (val>= 5)
-		{
-			Gripperstop();
-
-		}
-		else if (val < 5)
-		{
-			Gripper();
-		}
-		
-	
-	_delay_ms(500);
-}
-*/
+ 
