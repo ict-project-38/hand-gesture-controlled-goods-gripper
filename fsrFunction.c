@@ -7,11 +7,11 @@ int fsrValue()
 {
 	int val;
 	ADCSRA=0X87;
-	ADMUX=0X40;
+	ADMUX=0X38;
 	
 	while(1)
 	{
-		ADMUX=0X40;
+		ADMUX=0X38;
 		ADCSRA|=(1<<ADSC);
 		while((ADCSRA&(1<<ADIF))==0);
 		val=ADCH;
