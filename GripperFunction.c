@@ -5,9 +5,9 @@
 #include <ServoFunction.c>
 
 float fsrValue()
-float voltage;
+
 {
-	
+	float val;
 	ADCSRA=0X87;
 	ADMUX=0X40;
 	
@@ -16,8 +16,8 @@ float voltage;
 		ADMUX=0X40;
 		ADCSRA|=(1<<ADSC);
 		while((ADCSRA&(1<<ADIF))==0);
-		a=ADCH;
-		a=ADCL|ADCH<<8;
+		val=ADCH;
+		val=ADCL|ADCH<<8;
 	}
 	return (val);
 }
