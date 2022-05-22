@@ -1,38 +1,22 @@
-
-
 #include <avr/io.h>
 #include <util/delay.h>
-#include <ServoFunction.c>
 
-float fsrValue()
-float voltage;
+int fsrValue()
+
 {
-	
+	int val;
 	ADCSRA=0X87;
-	ADMUX=0X40;
+	ADMUX=0X38;
 	
 	while(1)
 	{
-		ADMUX=0X40;
+		ADMUX=0X38;
 		ADCSRA|=(1<<ADSC);
 		while((ADCSRA&(1<<ADIF))==0);
-		a=ADCH;
-		a=ADCL|ADCH<<8;
+		val=ADCH;
+		val=ADCL|ADCH<<8;
 	}
-	return (val);
+	return val;
 }
- /*{
-		if (val>= 5)
-		{
-			Gripperstop();
+ 
 
-		}
-		else if (val < 5)
-		{
-			Gripper();
-		}
-		
-	
-	_delay_ms(500);
-}
-*/
