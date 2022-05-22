@@ -12,171 +12,111 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <util/delay.h>
-#include <util/delay.h>
-void HorizontalStepRight() // Clockwise
-{
-	int dtime=15;
-	DDRB = 0x0F;		/* Make PORTB lower PORTBs as output */
-	/* Set dtime in between two steps */
-	while (1)
-	{
-		
-		for(int i=0;i<12;i++)
-		{
-			PORTB = 0x09;
-			_delay_ms(dtime);
-			PORTB = 0x0C;
-			_delay_ms(dtime);
-			PORTB = 0x06;
-			_delay_ms(dtime);
-			PORTB = 0x03;
-			_delay_ms(dtime);
-		}
-		//PORTB = 0x09;		/* Last step to initial position */
-		//_delay_ms(dtime);
-		//_delay_ms(1000);
-	}
-	
-	
-}
 
-void HorizontalStepLeft(){	//AntiClocwise
-	int dtime=15;
-	DDRB = 0x0F;		/* Make PORTB lower PORTBs as output */
-	/* Set dtime in between two steps */
-	while (1)
-	{
-		/* Rotate Stepper Motor Anticlockwise with Full step sequence */
-		for(int i=0;i<12;i++)
-		{
-			PORTB = 0x09;
-			_delay_ms(dtime);
-			PORTB = 0x03;
-			_delay_ms(dtime);
-			PORTB = 0x06;
-			_delay_ms(dtime);
-			PORTB = 0x0C;
-			_delay_ms(dtime);
-		}
-		//PORTB = 0x09;
-		//_delay_ms(dtime);
-		//_delay_ms(1000);
-	}
-	
-}
-
-void VerticalStepUp() // Clockwise
-{
-	int dtime=15;
-	
-	DDRB = 0xF0;		/* Make PORTB lower PORTBs as output */
-	/* Set dtime in between two steps */
-	while (1)
-	{
-		
-		for(int i=0;i<12;i++)
-		{
-			PORTB = 0x90;
-			_delay_ms(dtime);
-			PORTB = 0xC0;
-			_delay_ms(dtime);
-			PORTB = 0x60;
-			_delay_ms(dtime);
-			PORTB = 0x30;
-			_delay_ms(dtime);
-		}
-		//PORTB = 0x09;		/* Last step to initial position */
-		//_delay_ms(dtime);
-		//_delay_ms(1000);
-	}
-	
-	
-}
+#include "ServoFunctions.c"
+#include "StepperFunctions.c"
+#include "UltrasonicFunction.c"
+#include "BluetoothRecevierFunction.c"
+#include "FsrFunction.c"
 
 
-void VerticalStepDown(){	//AntiClocwise
-	int dtime=15;
-	DDRB = 0xF0;		/* Make PORTB lower PORTBs as output */
-	/* Set dtime in between two steps */
-	while (1)
-	{
-		/* Rotate Stepper Motor Anticlockwise with Full step sequence */
-		for(int i=0;i<12;i++)
-		{
-			PORTB = 0x90;
-			_delay_ms(dtime);
-			PORTB = 0x30;
-			_delay_ms(dtime);
-			PORTB = 0x60;
-			_delay_ms(dtime);
-			PORTB = 0xC0;
-			_delay_ms(dtime);
-		}
-		//PORTB = 0x09;
-		//_delay_ms(dtime);
-		//_delay_ms(1000);
-	}
-	
-}
+void Mpu6050Stepper();
+void Mpu6050Servo();
+void gripper();
 
-void StepStop(){
-	DDRB = 0xFF;		/* Make PORTB lower PORTBs as output */
-	PORTB = 0x00;
-}
 
-void pwmsetup()
-{
-	
-	TCNT1 = 0;		/* Set timer1 count zero */
-	ICR1 = 2499;		/* Set TOP count for timer1 in ICR1 register */
-
-	/* Set Fast PWM, TOP in ICR1, Clear OC1A on compare match, clk/64 */
-	TCCR1A = (1<<WGM11)|(1<<COM1A1)|(1<<COM1B1);
-	TCCR1B = (1<<WGM12)|(1<<WGM13)|(1<<CS10)|(1<<CS11);
-}
 int main()
 {
-	unsigned int i;
 	pwmsetup();
-	DDRC=0xFF;
-	DDRD = 0b10110000;
-	while(1)
+	void loop()
 	{
-		HorizontalStepLeft();
-		//VerticalStepUp();
-		PORTC=0x00;
-		for(i=127;i<=255;i++)
+		if (ultrasonicValue()>10)
 		{
-			_delay_ms(20);
-			OCR1B = i;
-			OCR1A = i;
+			Mpu6050Stepper();
+			Mpu6050Servo();
 		}
-		//_delay_ms(5000);
-		PORTC=0x01;
-		for(i=127;i<=255;i++)
+		else
 		{
-			_delay_ms(20);
-			OCR1B = i;
-			OCR1A = i;
+			if (fsrValue()<5)
+			gripper();
+			else
+			gripperStop();
+			if(*(getSensorValues()+6)==0)
+			Mpu6050Stepper();
+			
 		}
-		PORTC=0x02;
-		for(i=127;i<=255;i++)
-		{
-			_delay_ms(20);
-			OCR1B = i;
-			OCR1A = i;
-		}
-		PORTC=0x03;
-		for(i=127;i<=255;i++)
-		{
-			_delay_ms(20);
-			OCR1B = i;
-			OCR1A = i;
-		}	
+		
+
 	}
-return 0;
+	return 0;
 }
 
 
+void Mpu6050Stepper()
+{
+	if ((*getSensorValues()==5)&& (*(getSensorValues()+6))==0)
+	{
+		StepStop();
+	}
+	else if ((*getSensorValues()==1)&& (*(getSensorValues()+6))==0)
+	{
+		HorizontalStepRight();
+	}
+	else if((*getSensorValues()==2)&& (*(getSensorValues()+6))==0)
+	{
+		HorizontalStepLeft();
+	}
+	else if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==0)
+	{
+		VerticalStepUp();
+	}
+	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==0)
+	{
+		VerticalStepDown();
+	}
+}
 
+void Mpu6050Servo()
+{
+	if ((*(getSensorValues()+3)==5)&& (*(getSensorValues()+6))==1)
+	{
+		Servo1Stop();
+		Servo3Stop();
+	}
+	else if ((*getSensorValues()==1)&& (*(getSensorValues()+6))==1)
+	{
+		Servo1Right();
+	}
+	else if((*getSensorValues()==2)&& (*(getSensorValues()+6))==1)
+	{
+		Servo1Left();
+	}
+	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1)
+	{
+		Servo3up();
+	}
+	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1)
+	{
+		Servo3Down();
+	}
 
+}
+
+void gripper()
+{
+	char voltage[2];
+	voltage[0] = *(getSensorValues()+3);
+	voltage[1] = *(getSensorValues()+4);
+	int finalVoltage;
+	finalVoltage=(voltage[0]+voltage[1])/2;
+	if (finalVoltage>=342)
+	{
+		shrinkGripper();
+	}
+	else
+	{
+		expandGripper();
+	}                                                            //30 degree--50k----1.67V
+	_delay_ms(500);
+
+}
