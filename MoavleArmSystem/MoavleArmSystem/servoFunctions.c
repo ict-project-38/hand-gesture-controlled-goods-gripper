@@ -4,70 +4,120 @@
 #include <util/delay.h>		/* Include Delay header file */
 
 
-int pin;
-void rotateZero()
+unsigned int i;
+	DDRC=0xFF;
+	DDRD = 0b00100000;
+
+void pwmsetup()
 {
-    pin = 175;	/* Set servo shaft at 0° position */
-    _delay_ms(1500);
+	
+	TCNT1 = 0;		/* Set timer1 count zero */
+	ICR1 = 2499;		/* Set TOP count for timer1 in ICR1 register */
+
+	/* Set Fast PWM, TOP in ICR1, Clear OC1A on compare match, clk/64 */
+	TCCR1A = (1<<WGM11)|(1<<COM1A1)|(1<<COM1B1);
+	TCCR1B = (1<<WGM12)|(1<<WGM13)|(1<<CS10)|(1<<CS11);
 }
 
 
-void rotateNinty()
+
+
+void rotateRight()
 {
-    pin = 300;	/* Set servo at +90° position */
-    _delay_ms(1500);
+
+   for(i=127;i<=255;i++)
+		{
+			_delay_ms(20);
+			OCR1A = i;
+		}
 }
 
-void rotateMinusNinty()
+
+void rotateLeft()
 {
-    pin = 65;	/* Set servo shaft at -90° position */
-    _delay_ms(1500);
+   for(i=255;i>=127;i--)
+		{
+			_delay_ms(20);
+			OCR1A = i;
+		}
+	
 }
+
 
 void stopGripper()
 {
-    _delay_ms(15000000000);
-    pin = 175;	/* Set servo shaft at 0° position */
+    PORTC=0x00;
+   DDRD=0x00;
+   
+
 }
 
 
 
-void servo1left()
+void servo1Left()
 {
-    rotateMinusNinty();
+    PORTC=0x03;
+    rotateLeft();
 }
 
 void servo1Right()
 {
-    rotateNinty();
+    PORTC=0x03;
+    rotateRight();
+}
+void servo2Up()
+{
+    PORTC=0x02;
+    rotateRight();
+}
+
+void servo2Down()
+{
+    PORTC=0x02;
+    rotateLeft();
 }
 
 void servo3Up()
 {
-    rotateNinty();
+    PORTC=0x01;
+    rotateRight();
 }
 
 void servo3Down()
 {
-    rotateMinusNinty();
+    PORTC=0x01;
+    rotateLeft();
 }
 
 void expandGripper()
 {
-    rotateNinty();
+    PORTC=0x00;
+    rotateRight();
 }
 
 void shrinkGripper()
 {
-    rotateMinusNinty();
+    PORTC=0x00;
+    rotateLeft();
 }
 
 void servo1Stop()
 {
-   rotateZero();
+     PORTC=0x03;
+   DDRD=0x00;
+ 
+}
+
+void servo2Stop()
+{
+     PORTC=0x02;
+   DDRD=0x00;
+ 
 }
 
 void servo3Stop()
 {
-   rotateZero();
+    PORTC=0x01;
+    DDRD=0x00;
+
 }
