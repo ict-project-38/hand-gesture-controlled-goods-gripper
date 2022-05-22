@@ -9,7 +9,7 @@
 #include "USART_RS232_H_file_MPU.h"							/* Include USART header file */
 
 float Acc_x,Acc_y,Acc_z,Gyro_x,Gyro_y,Gyro_z;
-char arr[3];
+char arr[4];
 
 void MPU6050_Init()										/* Gyro initialization function */
 {
@@ -115,5 +115,6 @@ char*  positionLogic()
 	arr[0]=position;
 	arr[1]=position2;
 	arr[2]=stable;
+	arr[4]=Za;
 	return arr;
 }
