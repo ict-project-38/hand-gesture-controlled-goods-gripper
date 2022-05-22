@@ -7,7 +7,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   1 .data         00000000  00800060  00800060  00000758  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000027  00800060  00800060  00000758  2**0
+  2 .bss          00000029  00800060  00800060  00000758  2**0
                   ALLOC
   3 .comment      00000030  00000000  00000000  00000758  2**0
                   CONTENTS, READONLY
@@ -73,7 +73,7 @@ Disassembly of section .text:
   68:	1d 92       	st	X+, r1
 
 0000006a <.do_clear_bss_start>:
-  6a:	a7 38       	cpi	r26, 0x87	; 135
+  6a:	a9 38       	cpi	r26, 0x89	; 137
   6c:	b2 07       	cpc	r27, r18
   6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
   70:	0e 94 1d 02 	call	0x43a	; 0x43a <main>
@@ -84,7 +84,7 @@ Disassembly of section .text:
 
 0000007c <I2C_Init>:
 	int i=0;
-	for(i;i<6;i++)
+	for(i;i<7;i++)
 	{
 		USART_TxChar(*(SensorValues+i));
 	}
@@ -271,10 +271,10 @@ Disassembly of section .text:
  1f4:	88 0b       	sbc	r24, r24
  1f6:	99 0b       	sbc	r25, r25
  1f8:	0e 94 2c 02 	call	0x458	; 0x458 <__floatsisf>
- 1fc:	60 93 77 00 	sts	0x0077, r22	; 0x800077 <Acc_x>
- 200:	70 93 78 00 	sts	0x0078, r23	; 0x800078 <Acc_x+0x1>
- 204:	80 93 79 00 	sts	0x0079, r24	; 0x800079 <Acc_x+0x2>
- 208:	90 93 7a 00 	sts	0x007A, r25	; 0x80007a <Acc_x+0x3>
+ 1fc:	60 93 78 00 	sts	0x0078, r22	; 0x800078 <Acc_x>
+ 200:	70 93 79 00 	sts	0x0079, r23	; 0x800079 <Acc_x+0x1>
+ 204:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <Acc_x+0x2>
+ 208:	90 93 7b 00 	sts	0x007B, r25	; 0x80007b <Acc_x+0x3>
  20c:	0e 94 91 00 	call	0x122	; 0x122 <I2C_Read_Ack>
  210:	c8 2f       	mov	r28, r24
  212:	d0 e0       	ldi	r29, 0x00	; 0
@@ -288,10 +288,10 @@ Disassembly of section .text:
  224:	88 0b       	sbc	r24, r24
  226:	99 0b       	sbc	r25, r25
  228:	0e 94 2c 02 	call	0x458	; 0x458 <__floatsisf>
- 22c:	60 93 6b 00 	sts	0x006B, r22	; 0x80006b <Acc_y>
- 230:	70 93 6c 00 	sts	0x006C, r23	; 0x80006c <Acc_y+0x1>
- 234:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <Acc_y+0x2>
- 238:	90 93 6e 00 	sts	0x006E, r25	; 0x80006e <Acc_y+0x3>
+ 22c:	60 93 6c 00 	sts	0x006C, r22	; 0x80006c <Acc_y>
+ 230:	70 93 6d 00 	sts	0x006D, r23	; 0x80006d <Acc_y+0x1>
+ 234:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <Acc_y+0x2>
+ 238:	90 93 6f 00 	sts	0x006F, r25	; 0x80006f <Acc_y+0x3>
  23c:	0e 94 91 00 	call	0x122	; 0x122 <I2C_Read_Ack>
  240:	c8 2f       	mov	r28, r24
  242:	d0 e0       	ldi	r29, 0x00	; 0
@@ -322,10 +322,10 @@ Disassembly of section .text:
  284:	88 0b       	sbc	r24, r24
  286:	99 0b       	sbc	r25, r25
  288:	0e 94 2c 02 	call	0x458	; 0x458 <__floatsisf>
- 28c:	60 93 67 00 	sts	0x0067, r22	; 0x800067 <Gyro_x>
- 290:	70 93 68 00 	sts	0x0068, r23	; 0x800068 <Gyro_x+0x1>
- 294:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <Gyro_x+0x2>
- 298:	90 93 6a 00 	sts	0x006A, r25	; 0x80006a <Gyro_x+0x3>
+ 28c:	60 93 68 00 	sts	0x0068, r22	; 0x800068 <Gyro_x>
+ 290:	70 93 69 00 	sts	0x0069, r23	; 0x800069 <Gyro_x+0x1>
+ 294:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <Gyro_x+0x2>
+ 298:	90 93 6b 00 	sts	0x006B, r25	; 0x80006b <Gyro_x+0x3>
  29c:	0e 94 91 00 	call	0x122	; 0x122 <I2C_Read_Ack>
  2a0:	c8 2f       	mov	r28, r24
  2a2:	d0 e0       	ldi	r29, 0x00	; 0
@@ -339,10 +339,10 @@ Disassembly of section .text:
  2b4:	88 0b       	sbc	r24, r24
  2b6:	99 0b       	sbc	r25, r25
  2b8:	0e 94 2c 02 	call	0x458	; 0x458 <__floatsisf>
- 2bc:	60 93 7b 00 	sts	0x007B, r22	; 0x80007b <Gyro_y>
- 2c0:	70 93 7c 00 	sts	0x007C, r23	; 0x80007c <Gyro_y+0x1>
- 2c4:	80 93 7d 00 	sts	0x007D, r24	; 0x80007d <Gyro_y+0x2>
- 2c8:	90 93 7e 00 	sts	0x007E, r25	; 0x80007e <Gyro_y+0x3>
+ 2bc:	60 93 7c 00 	sts	0x007C, r22	; 0x80007c <Gyro_y>
+ 2c0:	70 93 7d 00 	sts	0x007D, r23	; 0x80007d <Gyro_y+0x1>
+ 2c4:	80 93 7e 00 	sts	0x007E, r24	; 0x80007e <Gyro_y+0x2>
+ 2c8:	90 93 7f 00 	sts	0x007F, r25	; 0x80007f <Gyro_y+0x3>
  2cc:	0e 94 91 00 	call	0x122	; 0x122 <I2C_Read_Ack>
  2d0:	c8 2f       	mov	r28, r24
  2d2:	d0 e0       	ldi	r29, 0x00	; 0
@@ -356,10 +356,10 @@ Disassembly of section .text:
  2e4:	88 0b       	sbc	r24, r24
  2e6:	99 0b       	sbc	r25, r25
  2e8:	0e 94 2c 02 	call	0x458	; 0x458 <__floatsisf>
- 2ec:	60 93 73 00 	sts	0x0073, r22	; 0x800073 <Gyro_z>
- 2f0:	70 93 74 00 	sts	0x0074, r23	; 0x800074 <Gyro_z+0x1>
- 2f4:	80 93 75 00 	sts	0x0075, r24	; 0x800075 <Gyro_z+0x2>
- 2f8:	90 93 76 00 	sts	0x0076, r25	; 0x800076 <Gyro_z+0x3>
+ 2ec:	60 93 74 00 	sts	0x0074, r22	; 0x800074 <Gyro_z>
+ 2f0:	70 93 75 00 	sts	0x0075, r23	; 0x800075 <Gyro_z+0x1>
+ 2f4:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <Gyro_z+0x2>
+ 2f8:	90 93 77 00 	sts	0x0077, r25	; 0x800077 <Gyro_z+0x3>
  2fc:	0e 94 5f 00 	call	0xbe	; 0xbe <I2C_Stop>
  300:	df 91       	pop	r29
  302:	cf 91       	pop	r28
@@ -425,10 +425,10 @@ Disassembly of section .text:
  37c:	30 e0       	ldi	r19, 0x00	; 0
  37e:	40 e8       	ldi	r20, 0x80	; 128
  380:	58 e3       	ldi	r21, 0x38	; 56
- 382:	60 91 77 00 	lds	r22, 0x0077	; 0x800077 <Acc_x>
- 386:	70 91 78 00 	lds	r23, 0x0078	; 0x800078 <Acc_x+0x1>
- 38a:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <Acc_x+0x2>
- 38e:	90 91 7a 00 	lds	r25, 0x007A	; 0x80007a <Acc_x+0x3>
+ 382:	60 91 78 00 	lds	r22, 0x0078	; 0x800078 <Acc_x>
+ 386:	70 91 79 00 	lds	r23, 0x0079	; 0x800079 <Acc_x+0x1>
+ 38a:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <Acc_x+0x2>
+ 38e:	90 91 7b 00 	lds	r25, 0x007B	; 0x80007b <Acc_x+0x3>
  392:	0e 94 90 02 	call	0x520	; 0x520 <__mulsf3>
  396:	4b 01       	movw	r8, r22
  398:	5c 01       	movw	r10, r24
@@ -436,10 +436,10 @@ Disassembly of section .text:
  39c:	30 e0       	ldi	r19, 0x00	; 0
  39e:	40 e8       	ldi	r20, 0x80	; 128
  3a0:	58 e3       	ldi	r21, 0x38	; 56
- 3a2:	60 91 6b 00 	lds	r22, 0x006B	; 0x80006b <Acc_y>
- 3a6:	70 91 6c 00 	lds	r23, 0x006C	; 0x80006c <Acc_y+0x1>
- 3aa:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <Acc_y+0x2>
- 3ae:	90 91 6e 00 	lds	r25, 0x006E	; 0x80006e <Acc_y+0x3>
+ 3a2:	60 91 6c 00 	lds	r22, 0x006C	; 0x80006c <Acc_y>
+ 3a6:	70 91 6d 00 	lds	r23, 0x006D	; 0x80006d <Acc_y+0x1>
+ 3aa:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <Acc_y+0x2>
+ 3ae:	90 91 6f 00 	lds	r25, 0x006F	; 0x80006f <Acc_y+0x3>
  3b2:	0e 94 90 02 	call	0x520	; 0x520 <__mulsf3>
  3b6:	6b 01       	movw	r12, r22
  3b8:	7c 01       	movw	r14, r24

@@ -37,7 +37,7 @@ Allocating common symbols
 Common symbol       size              file
 
 Acc_z               0x4               main.o
-arr                 0x3               main.o
+arr                 0x4               main.o
 Gyro_x              0x4               main.o
 Acc_y               0x4               main.o
 voltage             0x4               main.o
@@ -45,7 +45,7 @@ Gyro_z              0x4               main.o
 Acc_x               0x4               main.o
 Gyro_y              0x4               main.o
 a                   0x2               main.o
-out_arr             0x6               main.o
+out_arr             0x7               main.o
 
 Discarded input sections
 
@@ -483,31 +483,31 @@ END GROUP
                 0x00800060                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00800060       0x27
+.bss            0x00800060       0x29
                 0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800060       0x27 main.o
+ COMMON         0x00800060       0x29 main.o
                 0x00800060                Acc_z
                 0x00800064                arr
-                0x00800067                Gyro_x
-                0x0080006b                Acc_y
-                0x0080006f                voltage
-                0x00800073                Gyro_z
-                0x00800077                Acc_x
-                0x0080007b                Gyro_y
-                0x0080007f                a
-                0x00800081                out_arr
-                0x00800087                PROVIDE (__bss_end, .)
+                0x00800068                Gyro_x
+                0x0080006c                Acc_y
+                0x00800070                voltage
+                0x00800074                Gyro_z
+                0x00800078                Acc_x
+                0x0080007c                Gyro_y
+                0x00800080                a
+                0x00800082                out_arr
+                0x00800089                PROVIDE (__bss_end, .)
                 0x000006e4                __data_load_start = LOADADDR (.data)
                 0x000006e4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800087        0x0
+.noinit         0x00800089        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800087                _end = .
+                0x00800089                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
