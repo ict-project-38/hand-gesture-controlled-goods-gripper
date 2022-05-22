@@ -11,10 +11,14 @@ void pwmsetup()
 {
 	
 	TCNT1 = 0;		/* Set timer1 count zero */
-	ICR1 = 2499;		
+	ICR1 = 2499;		/* Set TOP count for timer1 in ICR1 register */
+
+	/* Set Fast PWM, TOP in ICR1, Clear OC1A on compare match, clk/64 */
 	TCCR1A = (1<<WGM11)|(1<<COM1A1)|(1<<COM1B1);
 	TCCR1B = (1<<WGM12)|(1<<WGM13)|(1<<CS10)|(1<<CS11);
 }
+
+
 
 
 void rotateRight()
@@ -42,7 +46,7 @@ void rotateLeft()
 void stopGripper()
 {
     PORTC=0x00;
-   DDRD=0x00;
+  PORTC=0xF6;
    
 
 }
@@ -99,20 +103,20 @@ void shrinkGripper()
 void servo1Stop()
 {
      PORTC=0x03;
-   DDRD=0x00;
+   PORTC=0xF6;
  
 }
 
 void servo2Stop()
 {
      PORTC=0x02;
-   DDRD=0x00;
+   PORTC=0xF6;
  
 }
 
 void servo3Stop()
 {
     PORTC=0x01;
-    DDRD=0x00;
+    PORTC=0xF6;
 
 }
