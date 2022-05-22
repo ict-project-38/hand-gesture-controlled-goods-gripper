@@ -47,6 +47,7 @@ void stopGripper()
 {
     PORTC=0x00;
   PORTC=0xF6;
+  PORTD=0xDD;
    
 
 }
@@ -111,6 +112,7 @@ void servo2Stop()
 {
      PORTC=0x02;
    PORTC=0xF6;
+   PORTD=0xDD;
  
 }
 
@@ -118,5 +120,6 @@ void servo3Stop()
 {
     PORTC=0x01;
     PORTC=0xF6;
+    PORTD=0xDD;
 
 }
