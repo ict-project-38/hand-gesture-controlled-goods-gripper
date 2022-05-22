@@ -1,22 +1,22 @@
+#define F_CPU 8000000UL
 #include <avr/io.h>
 #include <util/delay.h>
 
 int fsrValue()
-
 {
-	int val;
-	ADCSRA=0X87;
-	ADMUX=0X38;
+	int Vin,VinLow;
+	DDRA=0x38;			       /* Make ADC port as input */
+	ADCSRA = 0x87;			   /* Enable ADC, fr/128  */
+	ADMUX = 0x40;			   /* Vref: Avcc, ADC channel: 0 */
 	
-	while(1)
-	{
-		ADMUX=0X38;
-		ADCSRA|=(1<<ADSC);
-		while((ADCSRA&(1<<ADIF))==0);
-		val=ADCH;
-		val=ADCL|ADCH<<8;
-	}
-	return val;
+	ADCSRA |= (1<<ADSC);		    /* Start conversion */
+	while((ADCSRA&(1<<ADIF))==0);	/* Monitor end of conversion interrupt */
+	
+	_delay_us(10);
+	VinLow = (int)ADCL;	        /* Read lower byte*/
+	Vin = (int)ADCH*256;		/* Read higher 2 bits and Multiply with weight */
+	Vin = Vin + VinLow;				
+	return(Vin);			    /* Return digital value*/
 }
- 
+
 
