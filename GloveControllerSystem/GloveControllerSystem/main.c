@@ -20,7 +20,7 @@
 void USART_Init(unsigned long BAUDRATE);
 void USART_TxChar(char data);
 void USART_SendSensorValue(char *SensorValues);
-char out_arr[6];
+char out_arr[7];
 
 void USART_Init(unsigned long BAUDRATE)
 {
@@ -39,7 +39,7 @@ void USART_TxChar(char data)
 void USART_SendSensorValue(char *SensorValues)
 {
 	int i=0;
-	for(i;i<6;i++)
+	for(i;i<7;i++)
 	{
 		USART_TxChar(*(SensorValues+i));
 	}
@@ -59,6 +59,7 @@ int main(void)
 		out_arr[3] = *getVoltage();
 		out_arr[4] = *(getVoltage()+1);
 		out_arr[5] = triggerSwitchVal();
+		out_arr[6] = (*positionLogic()+3);
 		USART_SendSensorValue(out_arr);
 		return 0;
 	}
