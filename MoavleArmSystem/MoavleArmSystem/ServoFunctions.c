@@ -24,7 +24,7 @@ void pwmsetup()
 void servoRight(int pin,char adcvalue)
 {
 	PORTC=pin;
-	int x=adcvalue+127
+	int x=adcvalue+127;
 	for(int i=127;i<=x;i++)
 	{
 		_delay_ms(20);
@@ -35,7 +35,7 @@ void servoRight(int pin,char adcvalue)
 void servoLeft(int pin,char adcvalue)
 {
 	PORTC=pin;
-	int x=adcvalue+127
+	int x=adcvalue+127;
 	for(int i=x;i>=127;i--)
 	{
 		_delay_ms(20);
@@ -45,7 +45,7 @@ void servoLeft(int pin,char adcvalue)
 }
 void servoStop(int pin,char adcvalue)
 {
-	int x=adcvalue+127
+	int x=adcvalue+127;
 	PORTC=pin;
 	PORTD=0xDF;
 }
