@@ -1,10 +1,4 @@
-#include "Mpu6050Input.c"
-#include "ServoFlexFunctions.c"
-#include "StepperFunctions.c"
-#include "TriggerFunction.c"
-#include "UltrasonicFunction.c"
-#include "GripperFunction.c"
-#include "BluetoothFunctions.c"
+
 
 
 void Mpu6050Stepper();
@@ -24,7 +18,7 @@ void gripper();
 			if (fsrValue()<5)
 			gripper();
 			else
-			gripperStop();
+			servoStop(0);
 			if(*(getSensorValues()+6)==0)
 			Mpu6050Stepper();
 			
