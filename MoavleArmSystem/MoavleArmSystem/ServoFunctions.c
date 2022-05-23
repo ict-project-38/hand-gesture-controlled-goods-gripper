@@ -3,6 +3,7 @@
 #include <stdio.h>		/* Include std. library file */
 #include <util/delay.h>		/* Include Delay header file */
 
+
 unsigned int i;
 
 void pwmsetup()
@@ -32,15 +33,16 @@ void servoRight(int pin)
 
 void servoLeft(int pin)
 {
-	for(i=127;i<=255;i++)
+	PORTC=pin;
+	for(i=255;i>=127;i--)
 	{
 		_delay_ms(20);
 		OCR1A = i;
 	}
+	
 }
 void servoStop(int pin)
 {
+	PORTC=pin;
 	PORTD=0xDF;
 }
-
-
