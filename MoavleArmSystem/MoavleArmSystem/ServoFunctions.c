@@ -4,7 +4,7 @@
 #include <util/delay.h>		/* Include Delay header file */
 
 
-unsigned int i;
+//unsigned int i;
 
 void pwmsetup()
 {
@@ -21,28 +21,31 @@ void pwmsetup()
 }
 
 
-void servoRight(int pin)
+void servoRight(int pin,char adcvalue)
 {
 	PORTC=pin;
-	for(i=127;i<=255;i++)
+	int x=adcvalue+127
+	for(int i=127;i<=x;i++)
 	{
 		_delay_ms(20);
 		OCR1A = i;
 	}
 }
 
-void servoLeft(int pin)
+void servoLeft(int pin,char adcvalue)
 {
 	PORTC=pin;
-	for(i=255;i>=127;i--)
+	int x=adcvalue+127
+	for(int i=x;i>=127;i--)
 	{
 		_delay_ms(20);
 		OCR1A = i;
 	}
 	
 }
-void servoStop(int pin)
+void servoStop(int pin,char adcvalue)
 {
+	int x=adcvalue+127
 	PORTC=pin;
 	PORTD=0xDF;
 }
