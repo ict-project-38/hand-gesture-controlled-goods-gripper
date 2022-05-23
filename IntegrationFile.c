@@ -58,25 +58,25 @@ void Mpu6050Servo()
 {
 	if ((*(getSensorValues()+3)==5)&& (*(getSensorValues()+6))==1)
 	{
-		servoStop(3);
-		servoStop(1);
+		servoStop(3,128);
+		servoStop(1,128);
 
 	}
 	else if ((*getSensorValues()==1)&& (*(getSensorValues()+6))==1)
 	{
-		servoRight(3);
+		servoRight(3,128);
 	}
 	else if((*getSensorValues()==2)&& (*(getSensorValues()+6))==1)
 	{
-		servoLeft(3);
+		servoLeft(3,128);
 	}
 	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1)
 	{
-		servoRight(1);
+		servoRight(1,128);
 	}
 	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1)
 	{
-		servoLeft(1);
+		servoLeft(1,128);
 	}
 
 }
@@ -87,16 +87,7 @@ void gripper()
 
     int digitalVoltage;
     digitalVoltage=(*getVoltage()+*(getVoltage()+2))/2;
-
-    if (digitalVoltage>=49)
-    {
-      shrinkGripper;
-    }  
-    else
-    {
-      expandGripper;
-    }                                                            //30 degree--50k----1.67V
+    servoRight(0,int(digitalVoltage)); 
+                                                             //30 degree--50k----1.67V
     _delay_ms(500);                                               //45degree--62.5k---1.923V
-}                                                                 //so 1.923V -----393.4458=394
-                                                                  //1023---394-----so,128-----49.298
-
+}
