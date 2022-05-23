@@ -17,7 +17,7 @@ int* getVoltage()
 	AinLow = (int)ADCL;
 	Ain = (int)ADCH*256;
 	Ain = Ain+ AinLow;
-	a[0]=((Ain/1023)*255);
+	a[0]=((Ain/1023)*128);
 	_delay_ms(10);
 
 
@@ -31,7 +31,7 @@ int* getVoltage()
 	AinLow = (int)ADCL;
 	Ain= (int)ADCH*256;
 	AinLow = Ain+ AinLow;
-	a[1]=((Ain/1023)*255);
+	a[1]=((Ain/1023)*128);
 	_delay_ms(10);
 	return a;
 
