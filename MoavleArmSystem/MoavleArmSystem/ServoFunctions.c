@@ -3,14 +3,14 @@
 #include <stdio.h>		/* Include std. library file */
 #include <util/delay.h>		/* Include Delay header file */
 
-
 unsigned int i;
+
 void pwmsetup()
 {
-	
+
 	DDRC=0xFF;
 	DDRD = 0b00100000;
-	
+
 	TCNT1 = 0;		/* Set timer1 count zero */
 	ICR1 = 2499;		/* Set TOP count for timer1 in ICR1 register */
 
@@ -19,15 +19,10 @@ void pwmsetup()
 	TCCR1B = (1<<WGM12)|(1<<WGM13)|(1<<CS10)|(1<<CS11);
 }
 
-/*int main()
+
+void servoRight(int pin)
 {
-	
-}*/
-
-
-void rotateRight()
-{
-
+	PORTC=pin;
 	for(i=127;i<=255;i++)
 	{
 		_delay_ms(20);
@@ -35,95 +30,17 @@ void rotateRight()
 	}
 }
 
-
-void rotateLeft()
+void servoLeft(int pin)
 {
-	for(i=255;i>=127;i--)
+	for(i=127;i<=255;i++)
 	{
 		_delay_ms(20);
 		OCR1A = i;
 	}
-	
 }
-
-
-void stopGripper()
+void servoStop(int pin)
 {
-	PORTC=0x00;
-	PORTC=0xF6;
-	PORTD=0xDD;
-	
-
+	PORTD=0xDF;
 }
 
 
-
-void servo1Left()
-{
-	PORTC=0x03;
-	rotateLeft();
-}
-
-void servo1Right()
-{
-	PORTC=0x03;
-	rotateRight();
-}
-void servo2Up()
-{
-	PORTC=0x02;
-	rotateRight();
-}
-
-void servo2Down()
-{
-	PORTC=0x02;
-	rotateLeft();
-}
-
-void servo3Up()
-{
-	PORTC=0x01;
-	rotateRight();
-}
-
-void servo3Down()
-{
-	PORTC=0x01;
-	rotateLeft();
-}
-
-void expandGripper()
-{
-	PORTC=0x00;
-	rotateRight();
-}
-
-void shrinkGripper()
-{
-	PORTC=0x00;
-	rotateLeft();
-}
-
-void servo1Stop()
-{
-	PORTC=0x03;
-	PORTC=0xF6;
-	
-}
-
-void servo2Stop()
-{
-	PORTC=0x02;
-	PORTC=0xF6;
-	PORTD=0xDD;
-	
-}
-
-void servo3Stop()
-{
-	PORTC=0x01;
-	PORTC=0xF6;
-	PORTD=0xDD;
-
-}
