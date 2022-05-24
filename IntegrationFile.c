@@ -10,17 +10,28 @@ void gripper();
 	{
 		if (ultrasonicValue()>10)
 		{
-			Mpu6050Stepper();
-			Mpu6050Servo();
+				Mpu6050Stepper();
+				Mpu6050Servo();		
 		}
 		else
 		{
 			if (fsrValue()<5)
-			gripper();
+			{
+				servoStop(1,128);
+				servoStop(2,128);
+				servoStop(3,128);
+				gripper();
+			}
 			else
-			servoStop(0);
-			if(*(getSensorValues()+6)==0)
+			{
+				if (*(getSensorValues()+7)==6)
+					servoStop(0,128);
+				else(*(getSensorValues()+7)==7)
+					gripper();	
+			}
 			Mpu6050Stepper();
+			Mpu6050Servo();	
+			
 			
 		}
 		
@@ -52,14 +63,17 @@ void Mpu6050Stepper()
 	{
 		VerticalStepDown();
 	}
+	
 }
 
 void Mpu6050Servo()
 {
-	if ((*(getSensorValues()+3)==5)&& (*(getSensorValues()+6))==1)
+	if ((*(getSensorValues()+3)==5)&& (*(getSensorValues()+6))==1 )
 	{
 		servoStop(3,128);
 		servoStop(1,128);
+		servoStop(2,128);
+		
 
 	}
 	else if ((*getSensorValues()==1)&& (*(getSensorValues()+6))==1)
@@ -70,13 +84,21 @@ void Mpu6050Servo()
 	{
 		servoLeft(3,128);
 	}
-	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1)
+	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==7)
 	{
 		servoRight(1,128);
 	}
-	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1)
+	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==7)
 	{
 		servoLeft(1,128);
+	}
+	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==6)
+	{
+		servoRight(2,128);
+	}
+	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==6)
+	{
+		servoLeft(2,128);
 	}
 
 }
