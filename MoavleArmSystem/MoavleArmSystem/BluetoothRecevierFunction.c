@@ -9,7 +9,7 @@ void USART_Init(unsigned long BAUDRATE);
 char USART_RxChar();
 void USART_TxChar(char data);
 int* getSensorValues();
-char sensorValues[6],RightOrLeft,UporDown,Stable,FlexValue1,FlexValue2,SwitchVal;
+char sensorValues[7],RightOrLeft,UporDown,Stable,FlexValue1,FlexValue2,SwitchVal;
 
 void USART_Init(unsigned long BAUDRATE)
 {
@@ -33,7 +33,7 @@ int* getSensorValues()
 		USART_Init(9600);
 		Data_in = USART_RxChar();
 		int i=0;
-		for(i;i<6;i++)
+		for(i;i<7;i++)
 		{
 			sensorValues[i]=Data_in;
 		}
