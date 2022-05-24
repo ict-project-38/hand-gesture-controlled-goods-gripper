@@ -62,8 +62,8 @@ void Read_RawValue()
 
 char*  positionLogic() 
 {
-	char right=1,left=2,up=3,down=4,stable=5;
-	char position = right ,position2=up;
+	char right=1,left=2,up=3,down=4,stable=5,uptigger=6,downtrigger=7;
+	char position = right ,position2=up,position3=uptrigger;
 	float Xa,Ya,Za;
 	float Xg=0,Yg=0,Zg=0;
 	I2C_Init();											/* Initialize I2C */
@@ -109,12 +109,27 @@ char*  positionLogic()
 			else
 				position2=up;
 		}
+		if (position3==downtrigger)
+		{
+			if(Zg>5)
+				position3=uptrigger;
+			else
+				position3=downtrigger;
+		}
+		else if (position3==uptrigger)
+		{
+			if(Zg<5)
+				position3=downtrigger;
+			else
+				position3=uptrigger;
+		}
+		
 		_delay_ms(200);
 
 	}
 	arr[0]=position;
 	arr[1]=position2;
 	arr[2]=stable;
-	arr[4]=Za;
+	arr[4]=position3;
 	return arr;
 }
