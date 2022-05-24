@@ -5,6 +5,7 @@
  * Author : Thareejan
  */ 
 
+
 void Mpu6050Stepper();
 void Mpu6050Servo();
 void gripper();
@@ -14,17 +15,28 @@ void gripper();
 	{
 		if (ultrasonicValue()>10)
 		{
-			Mpu6050Stepper();
-			Mpu6050Servo();
+				Mpu6050Stepper();
+				Mpu6050Servo();		
 		}
 		else
 		{
 			if (fsrValue()<5)
-			gripper();
+			{
+				servoStop(1,128);
+				servoStop(2,128);
+				servoStop(3,128);
+				gripper();
+			}
 			else
-			gripperStop();
-			if(*(getSensorValues()+6)==0)
+			{
+				if (*(getSensorValues()+7)==6)
+					servoStop(0,128);
+				else(*(getSensorValues()+7)==7)
+					gripper();	
+			}
 			Mpu6050Stepper();
+			Mpu6050Servo();	
+			
 			
 		}
 		
@@ -56,30 +68,42 @@ void Mpu6050Stepper()
 	{
 		VerticalStepDown();
 	}
+	
 }
 
 void Mpu6050Servo()
 {
-	if ((*(getSensorValues()+3)==5)&& (*(getSensorValues()+6))==1)
+	if ((*(getSensorValues()+3)==5)&& (*(getSensorValues()+6))==1 )
 	{
-		Servo1Stop();
-		Servo3Stop();
+		servoStop(3,128);
+		servoStop(1,128);
+		servoStop(2,128);
+		
+
 	}
 	else if ((*getSensorValues()==1)&& (*(getSensorValues()+6))==1)
 	{
-		Servo1Right();
+		servoRight(3,128);
 	}
 	else if((*getSensorValues()==2)&& (*(getSensorValues()+6))==1)
 	{
-		Servo1Left();
+		servoLeft(3,128);
 	}
-	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1)
+	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==7)
 	{
-		Servo3up();
+		servoRight(1,128);
 	}
-	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1)
+	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==7)
 	{
-		Servo3Down();
+		servoLeft(1,128);
+	}
+	if((*(getSensorValues()+2)==3)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==6)
+	{
+		servoRight(2,128);
+	}
+	else if((*(getSensorValues()+2)==4)&& (*(getSensorValues()+6))==1 && (*(getSensorValues()+7))==6)
+	{
+		servoLeft(2,128);
 	}
 
 }
@@ -87,16 +111,10 @@ void Mpu6050Servo()
 void gripper()
 {
 
-	int finalVoltage;
-	finalVoltage=(voltage[0]+voltage[1])/2;
-	if (finalVoltage>=342)
-	{
-		shrinkGripper();
-	}
-	else
-	{
-		expandGripper();
-	}                                                            //30 degree--50k----1.67V
-	_delay_ms(500);
 
+    int digitalVoltage;
+    digitalVoltage=(*getVoltage()+*(getVoltage()+2))/2;
+    servoRight(0,int(digitalVoltage)); 
+                                                             //30 degree--50k----1.67V
+    _delay_ms(500);                                               //45degree--62.5k---1.923V
 }
