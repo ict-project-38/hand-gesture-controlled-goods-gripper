@@ -7,7 +7,7 @@ int fsrValue()
 	int Vin,VinLow;
 	DDRA=0x38;			       /* Make ADC port as input */
 	ADCSRA = 0x87;			   /* Enable ADC, fr/128  */
-	ADMUX = 0x38;			   /* Vref: Avcc, ADC channel: 0 */
+	ADMUX = 0x42;			   /* Vref: Avcc, ADC channel: 0 */
 	
 	ADCSRA |= (1<<ADSC);		    /* Start conversion */
 	while((ADCSRA&(1<<ADIF))==0);	/* Monitor end of conversion interrupt */
