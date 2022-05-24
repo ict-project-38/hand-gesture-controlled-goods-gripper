@@ -20,7 +20,7 @@ void gripper();
 		}
 		else
 		{
-			if (fsrValue()<5)
+			if (fsrValue()<200)
 			{
 				servoStop(1,128);
 				servoStop(2,128);
