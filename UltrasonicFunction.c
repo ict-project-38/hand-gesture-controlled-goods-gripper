@@ -3,7 +3,7 @@
 #include <stdio.h> 
 #include <avr/interrupt.h> 
 #include <util/delay.h> 
-#define Trigger_pin PA0
+#define Trigger_pin PD7
   
 int TimerOverflow=0;
  ISR(TIMER1_OVF_vect) 
@@ -11,17 +11,17 @@ int TimerOverflow=0;
     TimerOverflow++; 
  } 
 	 
-double ultrasonic()
+double ultrasonic();
 {long count; 	
  double distance; 	
-  DDRA = 0x01; 	
-  PORTD= 0xFF; 	
+  DDRD =0b10000000; 	
+  PORTD= 0b01111111; 	
 sei(); 	
 TIMSK=(1<<TOIE1); 	
 TCCR1A=0; 	 	
-PORTA|=(1<<Trigger_pin); 	
+PORTD|=(1<<Trigger_pin); 	
 _delay_us(10); 	
-PORTA&=(~(1<<Trigger_pin)); 	
+PORTD &=(~(1<<Trigger_pin)); 	
 TCNT1=0; 	
 TCCR1B=0x41; 	
 TIFR=1<<ICF1; 	
@@ -36,7 +36,7 @@ TIFR=1<<TOV1;
 	while((TIFR&(1<<ICF1))==0);
 	count=ICR1+(65535*TimerOverflow);
 	distance=(double)count/466.67;
-	DDRA=0x00;
+	DDRD=0x00;
 	return distance;
 	
      }
