@@ -11,7 +11,7 @@ int TimerOverflow=0;
     TimerOverflow++; 
  } 
 	 
-double ultrasonic();
+double ultrasonic()
 {long count; 	
  double distance; 	
   DDRD =0b10000000; 	
