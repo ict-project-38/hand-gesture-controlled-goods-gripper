@@ -14,8 +14,8 @@ int TimerOverflow=0;
 double ultrasonic()
 {long count; 	
  double distance; 	
-  DDRD =0b10000000; 	
-  PORTD= 0b01111111; 	
+  DDRD =0xC0; 	// 1010 0000
+  PORTD= 0x7F; // 0111 1111	
 sei(); 	
 TIMSK=(1<<TOIE1); 	
 TCCR1A=0; 	 	
