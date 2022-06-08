@@ -62,7 +62,7 @@ void Read_RawValue()
 
 char*  positionLogic() 
 {
-	char right=1,left=2,up=3,down=4,stable=5,uptigger=6,downtrigger=7;
+	char right=1,left=2,up=3,down=4,stable=5,uptrigger=6,downtrigger=7;
 	char position = right ,position2=up,position3=uptrigger;
 	float Xa,Ya,Za;
 	float Xg=0,Yg=0,Zg=0;
