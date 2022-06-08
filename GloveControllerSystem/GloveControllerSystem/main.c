@@ -38,8 +38,8 @@ void USART_TxChar(char data)
 
 void USART_SendSensorValue(char *SensorValues)
 {
-	int i=0;
-	for(i;i<7;i++)
+	int i=1;
+	for(i;i<=7;i++)
 	{
 		USART_TxChar(*(SensorValues+i));
 	}
